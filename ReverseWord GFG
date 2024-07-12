@@ -1,0 +1,39 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class ReverseWords {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        System.out.println(Reverse(s));
+
+    }
+    static String Reverse(String s){
+        Stack<Character> stack = new Stack<>();
+        StringBuilder sb =  new StringBuilder(s);
+        sb.reverse();
+        String s1 = sb.toString();
+        List<Character> result = new ArrayList<>();
+        for(char c:s1.toCharArray()){
+            if(c == '.'){
+                while(!stack.isEmpty()){
+                    result.add(stack.pop());
+                }
+                result.add(c);
+            }
+            else{
+                stack.push(c);
+            }
+        }
+        while(!stack.isEmpty()){
+            result.add(stack.pop());
+        }
+        StringBuilder s2 = new StringBuilder();
+        for(char ch:result){
+            s2.append(ch);
+        }
+        return s2.toString();
+    }
+}
